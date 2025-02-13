@@ -244,8 +244,8 @@ def simulate_interactive_segmentation(
 # Training function
 ###############################################################################
 def train_sam(
-    images_dir: str = "data/images",
-    masks_dir: str = "data/masks",
+    images_dir: str = "data/train1/images",
+    masks_dir: str = "data/train1/masks",
     num_epochs: int = 10,
     batch_size: int = 2,
     learning_rate: float = 1e-4,
