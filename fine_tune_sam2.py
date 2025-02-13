@@ -194,9 +194,7 @@ def simulate_interactive_segmentation(
             labels_list, dtype=torch.int, device=device
         ).unsqueeze(0)
 
-        prompt_embeddings = sam.prompt_encoder(
-            points=prompt_points, point_labels=prompt_labels
-        )
+        prompt_embeddings = sam.prompt_encoder(points=(prompt_points, prompt_labels))
 
         masks_pred, _, _ = sam.mask_decoder(
             image_embeddings=image_embedding.unsqueeze(0),
