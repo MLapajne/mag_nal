@@ -253,7 +253,7 @@ def train_sam(
     image_height: int = 1024,
     max_interactions: int = 3,
     model_type: str = "vit_b",
-    checkpoint_path: str = "sam_vit_b_01ec64.pth",
+    checkpoint_path: str = "/kaggle/working/mag_nal/models/sam/sam_vit_b_01ec64.pth",
     checkpoint_dir: str = "/kaggle/working/mag_nal/models/sam",
     num_workers: int = 4,
     freeze_encoder: bool = False,
