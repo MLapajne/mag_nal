@@ -244,8 +244,8 @@ def simulate_interactive_segmentation(
 # Training function
 ###############################################################################
 def train_sam(
-    images_dir: str = "data/train1/images",
-    masks_dir: str = "data/train1/masks",
+    images_dir: str = "/kaggle/working/mag_nal/data/train1/images",
+    masks_dir: str = "/kaggle/working/mag_nal/data/train1/masks",
     num_epochs: int = 10,
     batch_size: int = 2,
     learning_rate: float = 1e-4,
@@ -254,7 +254,7 @@ def train_sam(
     max_interactions: int = 3,
     model_type: str = "vit_b",
     checkpoint_path: str = "sam_vit_b_01ec64.pth",
-    checkpoint_dir: str = "models/sam",
+    checkpoint_dir: str = "/kaggle/working/mag_nal/models/sam",
     num_workers: int = 4,
     freeze_encoder: bool = False,
     use_amp: bool = False,
