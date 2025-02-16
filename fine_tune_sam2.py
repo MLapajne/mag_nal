@@ -194,12 +194,15 @@ def simulate_interactive_segmentation(
             labels_list, dtype=torch.int, device=device
         ).unsqueeze(0)
 
-        prompt_embeddings = sam.prompt_encoder(
+        sparse_embeddings, dense_embeddings = sam.prompt_encoder(
             points=(prompt_points, prompt_labels), boxes=None, masks=None
         )
 
         masks_pred, _, _ = sam.mask_decoder(
-            image_embedding.unsqueeze(0), prompt_embeddings, False
+            image_embedding.unsqueeze(0),
+            sparse_embeddings,
+            dense_embeddings,
+            False,  # multimask_output
         )
 
         masks_pred_upsampled = torch.nn.functional.interpolate(
