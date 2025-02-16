@@ -198,7 +198,7 @@ def simulate_interactive_segmentation(
             points=(prompt_points, prompt_labels), boxes=None, masks=None
         )
 
-        masks_pred, _, _ = sam.mask_decoder(
+        masks_pred, low_res_masks, iou_predictions = sam.mask_decoder(
             image_embedding.unsqueeze(0),
             sparse_embeddings,
             dense_embeddings,
