@@ -199,9 +199,7 @@ def simulate_interactive_segmentation(
         )
 
         masks_pred, _, _ = sam.mask_decoder(
-            image_embeddings=image_embedding.unsqueeze(0),
-            prompt_embeddings=prompt_embeddings,
-            multimask_output=False,
+            image_embedding.unsqueeze(0), prompt_embeddings, False
         )
 
         masks_pred_upsampled = torch.nn.functional.interpolate(
