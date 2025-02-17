@@ -193,7 +193,7 @@ def simulate_interactive_segmentation(
             image_embedding.unsqueeze(0),
             sparse_embeddings,
             dense_embeddings,
-            False,  # multimask_output
+            multimask_output=False,  # multimask_output
         )
 
         masks_pred_upsampled = torch.nn.functional.interpolate(
