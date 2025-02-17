@@ -188,10 +188,11 @@ def simulate_interactive_segmentation(
             points=(prompt_points, prompt_labels), boxes=None, masks=None
         )
 
-        # IMPORTANT: Pass the prompt embeddings as a tuple.
+        # Pass the prompt embeddings as separate arguments.
         masks_pred, low_res_masks, iou_predictions = sam.mask_decoder(
             image_embedding.unsqueeze(0),
-            (sparse_embeddings, dense_embeddings),
+            sparse_embeddings,
+            dense_embeddings,
             False,  # multimask_output
         )
 
