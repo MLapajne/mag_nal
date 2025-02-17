@@ -162,17 +162,6 @@ def simulate_interactive_segmentation(
 ) -> torch.Tensor:
     """
     Simulate interactive segmentation on a single image.
-
-    Args:
-        image_embedding (torch.Tensor): Pre-computed embedding for the image.
-        gt_mask (torch.Tensor): Ground truth mask for the image.
-        image_size (tuple): (width, height) of the image.
-        sam: The SAM model.
-        device (torch.device): Computation device.
-        max_interactions (int): Maximum number of interactive prompts.
-
-    Returns:
-        final_pred_logits (torch.Tensor): The final prediction logits.
     """
     gt_mask_np = gt_mask.squeeze().cpu().numpy()  # shape: [H, W]
     points_list: List[Tuple[int, int]] = []
@@ -194,14 +183,15 @@ def simulate_interactive_segmentation(
             labels_list, dtype=torch.int, device=device
         ).unsqueeze(0)
 
+        # Get the prompt embeddings.
         sparse_embeddings, dense_embeddings = sam.prompt_encoder(
             points=(prompt_points, prompt_labels), boxes=None, masks=None
         )
 
+        # IMPORTANT: Pass the prompt embeddings as a tuple.
         masks_pred, low_res_masks, iou_predictions = sam.mask_decoder(
             image_embedding.unsqueeze(0),
-            sparse_embeddings,
-            dense_embeddings,
+            (sparse_embeddings, dense_embeddings),
             False,  # multimask_output
         )
 
